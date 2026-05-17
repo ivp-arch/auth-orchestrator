@@ -1,0 +1,13 @@
+{
+  "name": "@auth-orchestrator/vitest-preset",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "peerDependencies": {
+    "vitest": "^4.0.0"
+  }
+}
