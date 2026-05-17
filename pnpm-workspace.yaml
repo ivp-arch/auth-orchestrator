@@ -1,0 +1,7 @@
+packages:
+  - 'packages/*'
+  - 'examples/*'
+  - 'apps/*'
+  - 'tooling/*'
+allowBuilds:
+  esbuild: set this to true or false
