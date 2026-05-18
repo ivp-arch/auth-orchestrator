@@ -1,5 +1,5 @@
 import { NetworkError } from '../errors';
-import type { Provider, ProviderMetadata } from '../types';
+import type { OidcDiscoveryResponse, Provider, ProviderMetadata } from '../types';
 
 export class GenericOidcProvider implements Provider {
   readonly id = 'generic-oidc';
@@ -12,14 +12,14 @@ export class GenericOidcProvider implements Provider {
     if (!response.ok) {
       throw new NetworkError(`Failed to fetch OIDC metadata: ${response.statusText}`);
     }
-    const data = (await response.json()) as Record<string, string>;
+    const data = (await response.json()) as OidcDiscoveryResponse;
 
     return {
-      authorizationEndpoint: data['authorization_endpoint'] ?? '',
-      tokenEndpoint: data['token_endpoint'] ?? '',
-      endSessionEndpoint: data['end_session_endpoint'] ?? '',
-      jwksUri: data['jwks_uri'] ?? '',
-      issuer: data['issuer'] ?? '',
+      authorizationEndpoint: data.authorization_endpoint ?? '',
+      tokenEndpoint: data.token_endpoint ?? '',
+      endSessionEndpoint: data.end_session_endpoint ?? '',
+      jwksUri: data.jwks_uri ?? '',
+      issuer: data.issuer ?? '',
     };
   }
 }

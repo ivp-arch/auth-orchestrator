@@ -6,8 +6,8 @@ export {
   NetworkError,
   StateError,
   TokenError,
-} from './errors/index.js';
-export { AuthOrchestrator } from './orchestrator.js';
+} from './errors/index';
+export { AuthOrchestrator } from './orchestrator';
 export type {
   AuthConfig,
   AuthState,
@@ -15,4 +15,4 @@ export type {
   Provider,
   TokenStorage,
   User,
-} from './types.js';
+} from './types';
