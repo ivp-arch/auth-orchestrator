@@ -1,0 +1,14 @@
+{
+  "name": "@auth-orchestrator/docs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Documentation site for Auth Orchestrator",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Docs site not yet implemented — placeholder for future Starlight/Vocs setup' && exit 0",
+    "dev": "echo 'Docs site not yet implemented' && exit 0",
+    "test": "echo 'No tests for docs site yet' && exit 0",
+    "type-check": "echo 'No type-check for docs site yet' && exit 0",
+    "clean": "rm -rf dist .turbo"
+  }
+}
