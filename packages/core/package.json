@@ -1,0 +1,70 @@
+{
+  "name": "@auth-orchestrator/core",
+  "version": "0.0.1",
+  "description": "Framework-agnostic OAuth/OIDC orchestrator for SPAs",
+  "license": "MIT",
+  "author": "ivp-arch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivp-arch/auth-orchestrator.git",
+    "directory": "packages/core"
+  },
+  "bugs": "https://github.com/ivp-arch/auth-orchestrator/issues",
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "oidc",
+    "openid-connect",
+    "authentication",
+    "auth",
+    "pkce"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./providers/*": {
+      "types": "./dist/providers/*.d.ts",
+      "import": "./dist/providers/*.js",
+      "require": "./dist/providers/*.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "jose": "6.2.3",
+    "oauth4webapi": "3.8.6"
+  },
+  "devDependencies": {
+    "@auth-orchestrator/tsup-config": "workspace:*",
+    "@auth-orchestrator/vitest-preset": "workspace:*",
+    "@vitest/coverage-v8": "4.1.6",
+    "happy-dom": "17.4.4",
+    "tsup": "8.5.1",
+    "typescript": "5.8.3",
+    "vitest": "4.1.6"
+  }
+}
