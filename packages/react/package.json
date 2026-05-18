@@ -1,0 +1,73 @@
+{
+  "name": "@auth-orchestrator/react",
+  "version": "0.0.1",
+  "description": "React adapter for Auth Orchestrator",
+  "license": "MIT",
+  "author": "ivp-arch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivp-arch/auth-orchestrator.git",
+    "directory": "packages/react"
+  },
+  "bugs": "https://github.com/ivp-arch/auth-orchestrator/issues",
+  "keywords": [
+    "react",
+    "oauth",
+    "oauth2",
+    "oidc",
+    "authentication",
+    "auth",
+    "hooks"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@auth-orchestrator/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@auth-orchestrator/tsup-config": "workspace:*",
+    "@auth-orchestrator/vitest-preset": "workspace:*",
+    "@testing-library/react": "16.3.0",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "@vitest/coverage-v8": "4.1.6",
+    "happy-dom": "20.9.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tsup": "8.5.1",
+    "typescript": "5.8.3",
+    "vitest": "4.1.6"
+  }
+}
