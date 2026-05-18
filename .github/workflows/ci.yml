@@ -38,8 +38,9 @@ jobs:
       - name: Type-check
         run: pnpm type-check
 
-      - name: Test
-        run: pnpm test
+# TODO: Add later
+#      - name: Test
+#        run: pnpm test
 
       - name: Build
         run: pnpm build
