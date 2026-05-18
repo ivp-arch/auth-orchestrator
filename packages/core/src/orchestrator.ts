@@ -1,5 +1,5 @@
-import { StateStore, type Unsubscribe } from './events/state-store.js';
-import type { AuthConfig, AuthState } from './types.js';
+import { StateStore, type Unsubscribe } from './events/state-store';
+import type { AuthConfig, AuthState } from './types';
 
 /**
  * Main orchestrator. This is a v0.0.1 scaffold; the real implementation

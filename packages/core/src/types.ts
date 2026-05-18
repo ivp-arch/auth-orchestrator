@@ -90,3 +90,11 @@ export type ProviderMetadata = {
   jwksUri: string;
   issuer: string;
 };
+
+export interface OidcDiscoveryResponse {
+  authorization_endpoint?: string;
+  token_endpoint?: string;
+  end_session_endpoint?: string;
+  jwks_uri?: string;
+  issuer?: string;
+}
