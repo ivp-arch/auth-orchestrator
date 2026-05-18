@@ -1,0 +1,7 @@
+# Default owners
+* @ivp-arch
+
+# Security-sensitive paths
+/packages/core/src/flows/      @ivp-arch
+/packages/core/src/tokens/     @ivp-arch
+/.github/workflows/            @ivp-arch
