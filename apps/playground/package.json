@@ -1,0 +1,14 @@
+{
+  "name": "@auth-orchestrator/playground",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Interactive playground for Auth Orchestrator",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Playground not yet implemented — placeholder for future Vite app' && exit 0",
+    "dev": "echo 'Playground not yet implemented' && exit 0",
+    "test": "echo 'No tests for playground yet' && exit 0",
+    "type-check": "echo 'No type-check for playground yet' && exit 0",
+    "clean": "rm -rf dist .turbo"
+  }
+}

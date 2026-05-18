@@ -33,6 +33,12 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
+  apps/docs: {}
+
+  apps/e2e: {}
+
+  apps/playground: {}
+
   packages/angular:
     dependencies:
       '@auth-orchestrator/core':

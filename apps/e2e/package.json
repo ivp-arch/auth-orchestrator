@@ -1,0 +1,14 @@
+{
+  "name": "@auth-orchestrator/e2e",
+  "private": true,
+  "version": "0.0.0",
+  "description": "End-to-end tests for Auth Orchestrator against real IdPs",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'E2E tests do not require build' && exit 0",
+    "test": "echo 'E2E tests not yet implemented' && exit 0",
+    "test:e2e": "echo 'E2E tests not yet implemented — placeholder for Playwright + Keycloak' && exit 0",
+    "type-check": "echo 'No type-check for e2e yet' && exit 0",
+    "clean": "rm -rf dist .turbo test-results playwright-report"
+  }
+}
