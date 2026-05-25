@@ -61,10 +61,10 @@
   "devDependencies": {
     "@auth-orchestrator/tsup-config": "workspace:*",
     "@auth-orchestrator/vitest-preset": "workspace:*",
-    "@vitest/coverage-v8": "4.1.6",
+    "@vitest/coverage-v8": "4.1.7",
     "happy-dom": "20.9.0",
     "tsup": "8.5.1",
     "typescript": "5.8.3",
-    "vitest": "4.1.6"
+    "vitest": "4.1.7"
   }
 }
