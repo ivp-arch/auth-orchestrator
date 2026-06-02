@@ -57,15 +57,15 @@
     "@auth-orchestrator/core": "workspace:*"
   },
   "devDependencies": {
-    "@angular/common": "21.2.13",
-    "@angular/core": "21.2.13",
-    "@angular/router": "21.2.13",
+    "@angular/common": "21.2.15",
+    "@angular/core": "21.2.15",
+    "@angular/router": "21.2.15",
     "@auth-orchestrator/tsup-config": "workspace:*",
     "@auth-orchestrator/vitest-preset": "workspace:*",
     "rxjs": "7.8.2",
     "tsup": "8.5.1",
     "typescript": "5.8.3",
-    "vitest": "4.1.6",
-    "zone.js": "0.15.1"
+    "vitest": "4.1.8",
+    "zone.js": "0.16.2"
   }
 }
