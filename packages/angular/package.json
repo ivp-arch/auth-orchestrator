@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@angular/common": "21.2.13",
-    "@angular/core": "21.2.13",
+    "@angular/core": "21.2.19",
     "@angular/router": "21.2.13",
     "@auth-orchestrator/tsup-config": "workspace:*",
     "@auth-orchestrator/vitest-preset": "workspace:*",
