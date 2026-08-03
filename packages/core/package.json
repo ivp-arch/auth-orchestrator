@@ -55,7 +55,7 @@
     "provenance": true
   },
   "dependencies": {
-    "jose": "6.2.3",
+    "jose": "6.2.5",
     "oauth4webapi": "3.8.6"
   },
   "devDependencies": {
