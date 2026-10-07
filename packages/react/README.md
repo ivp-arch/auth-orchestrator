@@ -1,8 +1,19 @@
 # @auth-orchestrator/react
 
-React adapter for Auth Orchestrator — OAuth 2.0 / OIDC for React SPAs.
+OAuth 2.0 / OpenID Connect for React applications: an `<AuthProvider>`, hooks built on
+`useSyncExternalStore` and a few unstyled components. Part of
+[Auth Orchestrator](https://github.com/ivp-arch/auth-orchestrator).
 
-> ⚠️ **Alpha**: API is not stable. Do not use in production yet.
+> [!WARNING]
+> **Pre-alpha.** The examples below show the **target API**. Sign-in and token access are not
+> functional yet. Do not use in production. See the
+> [project status](https://github.com/ivp-arch/auth-orchestrator#status).
+
+## Requirements
+
+- React **19 or later**
+- An OpenID Connect provider with a public client (Keycloak, Entra ID, Okta, Auth0, …) and your
+  app's callback URL registered as a redirect URI
 
 ## Installation
 
@@ -10,39 +21,84 @@ React adapter for Auth Orchestrator — OAuth 2.0 / OIDC for React SPAs.
 pnpm add @auth-orchestrator/react @auth-orchestrator/core
 ```
 
-## Quick start
+## Setup
 
 ```tsx
-import { AuthProvider, useAuth } from '@auth-orchestrator/react';
+import { type AuthConfig, AuthProvider } from '@auth-orchestrator/react';
 
-const config = {
+const authConfig = {
   provider: 'keycloak',
   authority: 'https://keycloak.example.com/realms/myapp',
   clientId: 'frontend-app',
-  redirectUri: window.location.origin + '/auth/callback',
+  redirectUri: `${window.location.origin}/auth/callback`,
   scopes: ['openid', 'profile', 'email'],
-};
+} satisfies AuthConfig;
 
-function App() {
+export function App() {
   return (
-    <AuthProvider config={config}>
-      <Profile />
+    <AuthProvider config={authConfig}>
+      <Header />
     </AuthProvider>
   );
 }
+```
 
-function Profile() {
+Declare the config outside the component (or memoize it) so the provider is not re-created on
+every render.
+
+## Reading auth state
+
+`useAuth()` returns the current state — a discriminated union on `status` — plus the actions:
+
+```tsx
+import { useAuth } from '@auth-orchestrator/react';
+
+function Header() {
   const auth = useAuth();
-  if (auth.status === 'unauthenticated') {
-    return <button onClick={() => auth.signIn()}>Sign in</button>;
+
+  switch (auth.status) {
+    case 'initializing':
+      return null;
+    case 'authenticated':
+    case 'refreshing':
+      return (
+        <>
+          <span>Hello, {auth.user.name}</span>
+          <button type="button" onClick={() => auth.signOut()}>
+            Sign out
+          </button>
+        </>
+      );
+    default:
+      return (
+        <button type="button" onClick={() => auth.signIn()}>
+          Sign in
+        </button>
+      );
   }
-  if (auth.status === 'authenticated') {
-    return <div>Hello, {auth.user.name}</div>;
-  }
-  return null;
 }
+```
+
+## API
+
+| Export | Purpose |
+| --- | --- |
+| `AuthProvider` | Creates the auth engine and provides it to the tree |
+| `useAuth()` | Full `AuthState` + `signIn()` / `signOut()` |
+| `useUser()` | `User \| null` |
+| `useIsAuthenticated()` | `boolean` |
+| `useAccessToken()` | Returns `() => Promise<string \| null>`; doesn't re-render on refresh |
+| `<Protected fallback={…}>` | Renders children only when authenticated |
+| `<SignInButton>` / `<SignOutButton>` | Unstyled buttons; accept all `<button>` props |
+
+```tsx
+import { Protected, SignInButton } from '@auth-orchestrator/react';
+
+<Protected fallback={<SignInButton className="btn" />}>
+  <Dashboard />
+</Protected>;
 ```
 
 ## License
 
-MIT
+[MIT](https://github.com/ivp-arch/auth-orchestrator/blob/main/LICENSE)
