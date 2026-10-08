@@ -1,0 +1,3 @@
+# Normalize all text files to LF in the repo and in checkouts.
+# Biome enforces LF (biome.json), so the working tree must match on every OS.
+* text=auto eol=lf
