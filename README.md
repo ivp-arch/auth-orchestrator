@@ -32,7 +32,7 @@ wrong redirect URI or missing scopes. It is never included in production builds.
 | --- | --- |
 | Package structure, public types, state model | ✅ Scaffolded |
 | OIDC discovery (Keycloak, generic OIDC) | 🚧 In progress |
-| Token layer and storage (memory, `sessionStorage`) | 📋 Planned |
+| Token layer and storage (memory, `sessionStorage`) | ✅ Implemented |
 | Sign-in / sign-out — Authorization Code + PKCE | 📋 Planned |
 | Automatic refresh, multi-tab sync | 📋 Planned |
 | Angular guard and interceptor (Bearer token, refresh on 401) | 📋 Planned |
