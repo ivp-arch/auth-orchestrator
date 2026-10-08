@@ -32,7 +32,15 @@ export type AuthConfig = {
   multiTabSync?: boolean;
 };
 
-export type TokenStorageConfig = 'memory' | 'sessionStorage' | { type: 'cookie'; backend: string };
+/**
+ * Token storage strategy: a named backend or a custom `TokenStorage` instance.
+ * The in-memory backend is the default and the safest option.
+ */
+export type TokenStorageConfig =
+  | 'memory'
+  | 'sessionStorage'
+  | TokenStorage
+  | { type: 'cookie'; backend: string };
 
 export type RefreshConfig = {
   strategy: 'auto' | 'manual' | 'silent-iframe';
@@ -67,14 +75,29 @@ export type AuthErrorLike = {
 };
 
 /**
+ * The full set of tokens issued by the provider. Stored and read as one unit so
+ * backends can persist a single record and `clear()` is atomic.
+ * `idToken` is stored opaquely here; it is validated in the sign-in flow (Week 3).
+ */
+export type TokenSet = {
+  /** Access token. Never logged, never serialized into error messages. */
+  accessToken: string;
+  /** Refresh token, when the provider issued one. */
+  refreshToken?: string;
+  /** OIDC ID token, when issued. */
+  idToken?: string;
+  /** Absolute access-token expiry, aligned with `AuthState.authenticated.expiresAt`. */
+  expiresAt: Date;
+};
+
+/**
  * Token storage abstraction. All operations are async because some backends
  * (cookie-via-BFF, IndexedDB, encrypted storage) require it.
  * For sync backends (sessionStorage) we still wrap in Promise for consistency.
  */
 export interface TokenStorage {
-  getAccessToken(): Promise<string | null>;
-  getRefreshToken(): Promise<string | null>;
-  setTokens(tokens: { accessToken: string; refreshToken?: string; expiresAt: Date }): Promise<void>;
+  getTokens(): Promise<TokenSet | null>;
+  setTokens(tokens: TokenSet): Promise<void>;
   clear(): Promise<void>;
 }
 
