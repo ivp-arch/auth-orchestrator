@@ -31,9 +31,9 @@ wrong redirect URI or missing scopes. It is never included in production builds.
 | Feature | Status |
 | --- | --- |
 | Package structure, public types, state model | ✅ Scaffolded |
-| OIDC discovery (Keycloak, generic OIDC) | 🚧 In progress |
+| OIDC discovery (Keycloak, generic OIDC) | ✅ Implemented |
 | Token layer and storage (memory, `sessionStorage`) | ✅ Implemented |
-| Sign-in / sign-out — Authorization Code + PKCE | 📋 Planned |
+| Sign-in / sign-out — Authorization Code + PKCE | ✅ Implemented |
 | Automatic refresh, multi-tab sync | 📋 Planned |
 | Angular guard and interceptor (Bearer token, refresh on 401) | 📋 Planned |
 | AI diagnostician (dev only) | 📋 Planned |

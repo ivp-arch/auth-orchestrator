@@ -3,6 +3,7 @@
 export {
   AuthError,
   ConfigError,
+  FlowError,
   NetworkError,
   StateError,
   TokenError,

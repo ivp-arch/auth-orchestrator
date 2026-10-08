@@ -48,8 +48,23 @@ export class TokenError extends AuthError {
 }
 
 export class StateError extends AuthError {
-  constructor(message: string, options?: { cause?: unknown }) {
-    super('ERR_STATE', message, options);
+  /**
+   * Accepts an optional granular `code` (e.g. `ERR_STATE_MISMATCH`, `ERR_FLOW_STATE`);
+   * defaults to the generic `ERR_STATE`.
+   */
+  constructor(message: string, options?: { cause?: unknown; code?: string }) {
+    super(options?.code ?? 'ERR_STATE', message, options);
     this.name = 'StateError';
+  }
+}
+
+export class FlowError extends AuthError {
+  /**
+   * Accepts an optional granular `code` (e.g. `ERR_AUTH_RESPONSE`,
+   * `ERR_CODE_EXCHANGE`, `ERR_ID_TOKEN_INVALID`); defaults to the generic `ERR_FLOW`.
+   */
+  constructor(message: string, options?: { cause?: unknown; code?: string }) {
+    super(options?.code ?? 'ERR_FLOW', message, options);
+    this.name = 'FlowError';
   }
 }

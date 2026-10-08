@@ -38,6 +38,11 @@ const config: AuthConfig = {
 
 const auth = new AuthOrchestrator(config);
 
+// Boot the state machine once at startup (idempotent, never rejects):
+// completes a pending callback if the provider redirected back,
+// otherwise settles to `unauthenticated`.
+await auth.initialize();
+
 // Reactive state: a discriminated union on `status`
 const unsubscribe = auth.subscribe((state) => {
   if (state.status === 'authenticated') {
@@ -46,7 +51,8 @@ const unsubscribe = auth.subscribe((state) => {
 });
 
 // One-shot operations return Promises
-await auth.signIn(); // not implemented yet
+await auth.signIn(); // redirect to the provider (Authorization Code + PKCE S256)
+await auth.signOut(); // local clear, then the provider's end-session endpoint if any
 ```
 
 ### State model
@@ -84,8 +90,11 @@ for the `sessionStorage` XSS trade-off and custom backends.
 ### Errors
 
 Failures reject with subclasses of `AuthError` — `ConfigError`, `NetworkError`, `TokenError`,
-`StateError` — each with a stable `code`. `AuthError.toJSON()` never includes sensitive data, so
-errors are safe to send to logging tools.
+`StateError`, `FlowError` — each with a stable `code`. `AuthError.toJSON()` never includes
+sensitive data, so errors are safe to send to logging tools. Every code is documented in the
+[error codes reference](https://github.com/ivp-arch/auth-orchestrator/tree/main/apps/docs/src/content/docs/troubleshooting/error-codes.md);
+the sign-in flow codes are covered in the
+[sign-in guide](https://github.com/ivp-arch/auth-orchestrator/tree/main/apps/docs/src/content/docs/guides/sign-in.md).
 
 ## License
 

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { AuthError, ConfigError, TokenError } from '../src/errors';
+import { ConfigError, TokenError } from '../src/errors';
 import { AuthOrchestrator } from '../src/orchestrator';
 import type { AuthConfig, TokenSet, TokenStorage } from '../src/types';
 
@@ -110,17 +110,5 @@ describe('AuthOrchestrator', () => {
       expect(error).toBeInstanceOf(ConfigError);
       expect((error as ConfigError).code).toBe('ERR_CONFIG');
     }
-  });
-
-  it('rejects signIn and signOut with AuthError ERR_NOT_IMPLEMENTED', async () => {
-    const auth = new AuthOrchestrator(makeConfig());
-
-    const signInError = await auth.signIn().catch((e: AuthError) => e);
-    expect(signInError).toBeInstanceOf(AuthError);
-    expect(signInError.code).toBe('ERR_NOT_IMPLEMENTED');
-
-    const signOutError = await auth.signOut().catch((e: AuthError) => e);
-    expect(signOutError).toBeInstanceOf(AuthError);
-    expect(signOutError.code).toBe('ERR_NOT_IMPLEMENTED');
   });
 });
