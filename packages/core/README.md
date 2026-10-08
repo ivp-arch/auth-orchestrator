@@ -62,6 +62,25 @@ await auth.signIn(); // not implemented yet
 | `refreshing` | `user` |
 | `error` | `error` |
 
+### Token storage
+
+Tokens are kept **in memory by default**: nothing is written to `sessionStorage`, `localStorage`
+or cookies. Opt into `sessionStorage` or plug in a custom backend via `tokenStorage`:
+
+```ts
+import { SessionStorageTokenStorage, type AuthConfig } from '@auth-orchestrator/core';
+
+const config: AuthConfig = {
+  // …
+  tokenStorage: 'sessionStorage', // or 'memory' (default), a TokenStorage instance, …
+};
+```
+
+`getAccessToken()` returns the current access token or rejects with a typed `TokenError`
+(`ERR_TOKEN_MISSING` / `ERR_TOKEN_EXPIRED`). See the
+[token storage guide](https://github.com/ivp-arch/auth-orchestrator/tree/main/apps/docs/src/content/docs/guides/token-storage.md)
+for the `sessionStorage` XSS trade-off and custom backends.
+
 ### Errors
 
 Failures reject with subclasses of `AuthError` — `ConfigError`, `NetworkError`, `TokenError`,

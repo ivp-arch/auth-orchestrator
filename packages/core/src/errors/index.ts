@@ -37,8 +37,12 @@ export class NetworkError extends AuthError {
 }
 
 export class TokenError extends AuthError {
-  constructor(message: string, options?: { cause?: unknown }) {
-    super('ERR_TOKEN', message, options);
+  /**
+   * Accepts an optional granular `code` (e.g. `ERR_TOKEN_MISSING`,
+   * `ERR_TOKEN_EXPIRED`); defaults to the generic `ERR_TOKEN`.
+   */
+  constructor(message: string, options?: { cause?: unknown; code?: string }) {
+    super(options?.code ?? 'ERR_TOKEN', message, options);
     this.name = 'TokenError';
   }
 }

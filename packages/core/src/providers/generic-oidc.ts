@@ -1,5 +1,5 @@
-import { NetworkError } from '../errors';
-import type { OidcDiscoveryResponse, Provider, ProviderMetadata } from '../types';
+import type { Provider, ProviderMetadata } from '../types';
+import { fetchOidcDiscovery } from './discovery';
 
 export class GenericOidcProvider implements Provider {
   readonly id = 'generic-oidc';
@@ -7,19 +7,6 @@ export class GenericOidcProvider implements Provider {
   constructor(private readonly authority: string) {}
 
   async getMetadata(): Promise<ProviderMetadata> {
-    const url = `${this.authority}/.well-known/openid-configuration`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new NetworkError(`Failed to fetch OIDC metadata: ${response.statusText}`);
-    }
-    const data = (await response.json()) as OidcDiscoveryResponse;
-
-    return {
-      authorizationEndpoint: data.authorization_endpoint ?? '',
-      tokenEndpoint: data.token_endpoint ?? '',
-      endSessionEndpoint: data.end_session_endpoint ?? '',
-      jwksUri: data.jwks_uri ?? '',
-      issuer: data.issuer ?? '',
-    };
+    return fetchOidcDiscovery(this.authority, 'OIDC');
   }
 }
