@@ -35,6 +35,14 @@ export class TokenManager {
     return tokens.accessToken;
   }
 
+  /**
+   * The stored token set as-is (no expiry check). Sign-out uses this to read the
+   * ID token for the `id_token_hint` even when the access token has expired.
+   */
+  async getTokens(): Promise<TokenSet | null> {
+    return this.storage.getTokens();
+  }
+
   async clear(): Promise<void> {
     await this.storage.clear();
   }

@@ -12,12 +12,14 @@ src/
   orchestrator.ts       AuthOrchestrator: config in, Promise actions + subscribable state out
   types.ts              AuthConfig, AuthState, TokenStorage, Provider, …
   events/state-store.ts StateStore<T>: minimal observer store (getState/setState/subscribe)
-  errors/index.ts       AuthError + ConfigError, NetworkError, TokenError, StateError
+  errors/index.ts       AuthError + ConfigError, NetworkError, TokenError, StateError, FlowError
   providers/            Provider implementations, published as `./providers/*` subpath exports
+  tokens/               token manager + in-memory / sessionStorage TokenStorage backends
+  flows/                redirect sign-in/sign-out: PKCE request, callback, flow state, end session
 ```
 
-Planned (from the roadmap and `CONTRIBUTING.md`): `src/tokens/` (token layer and storage,
-Week 2), `src/flows/` (redirect + PKCE sign-in/out, Week 3). Both are security-sensitive.
+Planned (from the roadmap and `CONTRIBUTING.md`): silent refresh and multi-tab sync. Both are
+security-sensitive; `src/flows/` and `src/tokens/` already are.
 
 ## Rules
 
