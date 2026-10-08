@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@auth-orchestrator/docs": "0.0.0",
+    "@auth-orchestrator/e2e": "0.0.0",
+    "@auth-orchestrator/playground": "0.0.0",
+    "@auth-orchestrator/angular": "0.0.1",
+    "@auth-orchestrator/core": "0.0.1",
+    "@auth-orchestrator/react": "0.0.1",
+    "@auth-orchestrator/tsup-config": "0.0.0",
+    "@auth-orchestrator/vitest-preset": "0.0.0"
+  },
+  "changesets": []
+}
