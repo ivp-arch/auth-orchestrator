@@ -11,5 +11,5 @@
     "@auth-orchestrator/tsup-config": "0.0.0",
     "@auth-orchestrator/vitest-preset": "0.0.0"
   },
-  "changesets": []
+  "changesets": ["soft-signins-listen", "tidy-tokens-listen"]
 }
